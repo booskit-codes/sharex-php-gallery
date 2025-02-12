@@ -1,0 +1,17 @@
+RewriteEngine On
+
+# Exclude /upload.php from the redirect
+RewriteCond %{REQUEST_URI} !^/upload\.php$
+
+# Exclude /gallery/ from the redirect
+RewriteCond %{REQUEST_URI} !^/gallery/
+
+# Exclude /sharex-php-gallery/ from the redirect
+# If you don't use the site on a base domain, uncomment this and change this to the name of your base folder.
+#RewriteCond %{REQUEST_URI} !^/sharex-php-gallery/
+
+# Exclude /images/ from the redirect
+RewriteCond %{REQUEST_URI} !^/images/
+
+# Redirect all other requests to /images/
+RewriteRule ^(.*)$ /images/$1 [L]

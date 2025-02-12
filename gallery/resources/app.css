@@ -1,0 +1,227 @@
+/* app.css */
+body {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    color: #444;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #1a237e;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2.5em;
+}
+
+.gallery {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.gallery h2 {
+    background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+    padding: 15px;
+    border-radius: 8px;
+    color: #283593;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 20px auto;
+}
+
+.thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.thumbnail-container {
+    position: relative; /* Make container relative for action button positioning */
+    display: inline-block; /* Needed for proper flexbox layout in thumbnails */
+}
+
+.thumbnail {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 2px solid #f5f7fa;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    background-color: #fff;
+    position: relative;
+}
+
+.thumbnail::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, rgba(255, 0, 0, 0), rgba(0, 255, 0, 0), rgba(0, 0, 255, 0));
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    opacity: 0;
+}
+
+.thumbnail:hover::before {
+    opacity: 1;
+    background: linear-gradient(45deg, rgba(255, 0, 0, 1), rgba(0, 255, 0, 1), rgba(0, 0, 255, 1));
+}
+
+.thumbnail:hover {
+    transform: scale(1.15);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+    border-color: transparent;
+}
+
+.image-actions {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.actions-button {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    padding: 6px 8px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.actions-button:hover {
+    opacity: 1;
+}
+
+.actions-dropdown {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 5px 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10;
+    min-width: 120px;
+}
+
+.actions-dropdown.hidden {
+    display: none;
+}
+
+.actions-dropdown a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+    text-align: left;
+}
+
+.actions-dropdown a:hover {
+    background-color: #f0f0f0;
+}
+
+
+.pagination {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.pagination a {
+    color: #283593;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #c5cae9;
+    padding: 10px 15px;
+    margin: 0 6px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.pagination a.active {
+    background-color: #283593;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination a:hover {
+    background-color: #c5cae9;
+    color: #283593;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .thumbnail {
+        width: 140px;
+        height: 140px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .gallery h2 {
+        font-size: 1.5em;
+        padding: 10px;
+    }
+}
+
+/* Drag and Drop Styling */
+.drag-drop-container { /* Keep this style, it might be useful for layout */
+    position: relative; /* Needed for overlay positioning - though overlay is fixed now*/
+}
+
+body.dragover { /* Apply dragover style to body */
+    background-color: rgba(204, 255, 204, 0.5); /* Light green overlay when dragging */
+    border: 3px dashed #8fbc8f; /* Example dashed border */
+}
+
+#drop-overlay {
+    position: fixed; /* Change to fixed positioning */
+    top: 0;      /* Cover the entire viewport */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white overlay */
+    border-radius: 5px;
+    border: 2px dashed #999;
+    color: #555;
+    font-size: 1.5em;
+    font-weight: bold;
+    opacity: 0; /* Initially hidden */
+    pointer-events: none; /* Make it non-interactive */
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000; /* Ensure overlay is on top of everything */
+}
+
+body.dragover #drop-overlay { /* Target body.dragover for showing overlay */
+    opacity: 1; /* Show overlay when dragover class is active */
+}
+
+#drop-overlay.hidden {
+    opacity: 0;
+}
+
+#drop-overlay i {
+    margin-bottom: 10px;
+}
+
+/* Notification Styling */
+.upload-notification {
+    z-index: 1050; /* Ensure it's above other elements */
+}
