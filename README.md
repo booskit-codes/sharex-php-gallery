@@ -21,7 +21,7 @@ This project provides a custom host upload script that seamlessly integrates wit
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo/sharex-upload-gallery.git
+   git clone https://github.com/booskit-codes/sharex-php-gallery.git
    ```
 2. Configure your web server (e.g., Nginx or Apache) to handle subdomains correctly.
 3. Set up a database for image management and authentication.
