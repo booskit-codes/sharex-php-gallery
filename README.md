@@ -25,7 +25,7 @@ This project provides a custom host upload script that seamlessly integrates wit
    ```
 2. Configure your web server (e.g., Nginx or Apache) to handle subdomains correctly.
 3. Set up a database for image management and authentication.
-4. Update configuration files with your domain and database details.
+4. Update configuration files with your domain details.
 5. Deploy the script to your server.
 
 ## ShareX Configuration
